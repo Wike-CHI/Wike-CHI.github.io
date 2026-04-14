@@ -1,13 +1,12 @@
 baseURL = "https://wike-chi.github.io/"
-languageCode = "zh-cn"
+languageCode = "zh-Hans"
+defaultContentLanguage = "zh"
 title = "Wike's Blog"
-theme = "geekdoc"
+theme = "papermod"
 
 [params]
-  geekdocLogo = ""
-  geekdocMenuBundle = true
-  geekdocSearch = true
-  geekdocTagsToMenu = true
+  description = "AI · 直播系统 · 全栈开发"
+  author = "Wike"
 
 [markup]
   [markup.highlight]
@@ -16,5 +15,12 @@ theme = "geekdoc"
     [markup.goldmark.renderer]
       unsafe = true
 
-[params.geekdocAnchorRight]
-  enable = true
+[menu]
+  [[menu.main]]
+    name = "文章"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "关于"
+    url = "/about/"
+    weight = 2
