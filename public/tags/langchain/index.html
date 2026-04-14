@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  class="color-toggle-hidden"
+  
+>
+  <head>
+    <meta charset="UTF-8" />
+<meta name="referrer" content="no-referrer" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light dark" />
+<meta name="generator" content="Hugo 0.160.1">
+
+
+
+    <title>LangChain | Wike&#39;s Blog</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon/favicon-16x16.png"
+/>
+
+    
+
+    
+  <meta
+    property="og:title"
+    content="LangChain"
+  />
+  <meta property="og:site_name" content="Wike's Blog" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://wike-chi.github.io/tags/langchain/" />
+
+
+
+
+  <meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="LangChain" />
+
+
+
+
+    
+  <script src="/"></script>
+<script src="/"></script>
+
+<link
+  rel="preload"
+  as="font"
+  href="/fonts/Metropolis.woff2"
+  type="font/woff2"
+  crossorigin="anonymous"
+/>
+<link
+  rel="preload"
+  as="font"
+  href="/fonts/LiberationSans.woff2"
+  type="font/woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  href="/"
+  as="style"
+/>
+<link
+  rel="stylesheet"
+  href="/"
+  media="all"
+/>
+
+<link
+  rel="preload"
+  href="/"
+  as="style"
+/>
+<link
+  rel="stylesheet"
+  href="/"
+  media="screen and (max-width: 45rem)"
+/>
+
+<link
+  rel="preload"
+  href="/"
+  as="style"
+/>
+<link
+  rel="stylesheet"
+  href="/"
+  media="print"
+/>
+
+<link
+  rel="preload"
+  href="/"
+  as="style"
+/>
+<link
+  rel="stylesheet"
+  href="/"
+  media="all"
+/>
+  <link href="https://wike-chi.github.io/tags/langchain/" rel="canonical" type="text/html" />
+
+<!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
+
+    
+
+  </head>
+
+  <body itemscope itemtype="https://schema.org/WebPage">
+    <div class="w-full flex justify-center">
+      <a href="#main-content" id="gdoc-to-main" class="gdoc-markdown__link">Skip to main content</a>
+    </div>
+
+    
+
+
+
+    <div
+      class="wrapper "
+    >
+      
+      <header class="gdoc-header">
+  <div class="container flex align-center justify-between">
+    
+      <label for="menu-control" class="gdoc-nav__control">
+        <div tabindex="0" role="button" aria-pressed="false">
+          <input type="checkbox" class="hidden" id="menu-control" />
+
+          <svg class="gdoc-icon gdoc_menu">
+            <title>打开导航</title>
+            <use xlink:href="#gdoc_menu"></use>
+          </svg>
+          <svg class="gdoc-icon gdoc_arrow_back">
+            <title>关闭导航</title>
+            <use xlink:href="#gdoc_arrow_back"></use>
+          </svg>
+        </div>
+      </label>
+    
+    <div>
+      <a class="gdoc-brand gdoc-header__link flex gap-16 align-center" href="https://wike-chi.github.io/">
+        <img
+          class="gdoc-brand__img"
+          src="/brand.svg"
+          alt=""
+        />
+        <div>
+          <div class="gdoc-brand__title">Wike&#39;s Blog</div>
+          
+        </div>
+      </a>
+    </div>
+    <div class="gdoc-menu-header flex gap-16">
+      <span class="gdoc-menu-header__items">
+        
+
+
+        <span id="gdoc-color-theme" tabindex="0" role="button" aria-pressed="false">
+          <svg class="gdoc-icon gdoc_brightness_dark">
+            <title>切换暗/亮/自动模式</title>
+            <use xlink:href="#gdoc_brightness_dark"></use>
+          </svg>
+          <svg class="gdoc-icon gdoc_brightness_light">
+            <title>切换暗/亮/自动模式</title>
+            <use xlink:href="#gdoc_brightness_light"></use>
+          </svg>
+          <svg class="gdoc-icon gdoc_brightness_auto">
+            <title>切换暗/亮/自动模式</title>
+            <use xlink:href="#gdoc_brightness_auto"></use>
+          </svg>
+        </span>
+
+        <span class="gdoc-menu-header__home">
+          <a href="https://wike-chi.github.io/" class="gdoc-header__link">
+            <svg class="gdoc-icon gdoc_home">
+              <title>返回首页</title>
+              <use xlink:href="#gdoc_home"></use>
+            </svg>
+          </a>
+        </span>
+
+        
+
+      </span>
+      <span class="gdoc-menu-header__control">
+        <label for="menu-header-control">
+          <div tabindex="0" role="button" aria-pressed="false">
+            <input type="checkbox" class="hidden" id="menu-header-control" />
+
+            <svg class="gdoc-icon gdoc_keyboard_arrow_right">
+              <use xlink:href="#gdoc_keyboard_arrow_right"></use>
+              <title>关闭菜单栏</title>
+            </svg>
+
+            <svg class="gdoc-icon gdoc_keyboard_arrow_left">
+              <use xlink:href="#gdoc_keyboard_arrow_left"></use>
+              <title>打开菜单栏</title>
+            </svg>
+          </div>
+        </label>
+      </span>
+    </div>
+  </div>
+</header>
+
+
+
+      <main class="container flex flex-even">
+        
+          <aside class="gdoc-nav">
+            <nav>
+  
+  <script defer src="/"></script><div class="gdoc-search flex align-center">
+    <svg class="gdoc-icon gdoc_search"><use xlink:href="#gdoc_search"></use></svg>
+    <input
+      type="text"
+      id="gdoc-search-input"
+      class="gdoc-search__input"
+      placeholder="搜索..."
+      aria-label="搜索"
+      maxlength="64"
+      data-site-base-url="https://wike-chi.github.io/"
+      data-site-lang="en"
+    />
+    <ul id="gdoc-search-results" class="gdoc-search__list"></ul>
+  </div>
+
+
+
+
+  <section class="gdoc-nav--main">
+    <h2>导航</h2>
+    
+      
+
+  
+  
+
+
+  <ul class="gdoc-nav__list">
+    
+  </ul>
+
+
+
+
+
+
+    
+  </section>
+
+  
+    <section class="gdoc-nav--tags">
+      <h2>标签</h2>
+      <ul class="gdoc-nav__list">
+        
+        
+          
+            <li>
+              <a
+                class="gdoc-nav__entry"
+                href="/tags/ai/"
+              >
+                AI
+              </a>
+            </li>
+          
+        
+          
+            <li>
+              <a
+                class="gdoc-nav__entry"
+                href="/tags/electron/"
+              >
+                Electron
+              </a>
+            </li>
+          
+        
+          
+            <li>
+              <a
+                class="gdoc-nav__entry is-active"
+                href="/tags/langchain/"
+              >
+                LangChain
+              </a>
+            </li>
+          
+        
+          
+            <li>
+              <a
+                class="gdoc-nav__entry"
+                href="/tags/python/"
+              >
+                Python
+              </a>
+            </li>
+          
+        
+          
+            <li>
+              <a
+                class="gdoc-nav__entry"
+                href="/tags/%E7%9B%B4%E6%92%AD%E7%B3%BB%E7%BB%9F/"
+              >
+                直播系统
+              </a>
+            </li>
+          
+        
+      </ul>
+    </section>
+  
+
+
+  <section class="gdoc-nav--more">
+    
+  </section>
+</nav>
+
+          </aside>
+        
+
+
+        <div class="gdoc-page">
+          
+  <div id="main-content" tabindex="-1">
+  
+    <article class="gdoc-post">
+      <header class="gdoc-post__header">
+        <h1 class="gdoc-post__title">
+          <a href="/posts/timao-architecture/">Wike - AI驱动的抖音直播助手Timao技术架构解析</a>
+        </h1>
+      </header>
+
+      <section class="gdoc-markdown">
+        <div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="为什么做timao"
+    >
+        为什么做Timao
+    </h2>
+    <a data-clipboard-text="https://wike-chi.github.io/posts/timao-architecture/#为什么做timao" class="gdoc-page__anchor clip flex align-center" title="锚定到： 为什么做Timao" aria-label="锚定到： 为什么做Timao" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%81%9atimao">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>抖音直播的痛点很明确：主播在直播过程中需要同时关注弹幕、话术、节奏，但人脑很难同时处理这么多信息。市面上的直播助手大多是简单的弹幕展示工具，缺少<strong>智能化</strong>的能力。</p>
+<p>Timao 的目标是：<strong>让AI实时辅助直播决策</strong>。</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="技术架构"
+    >
+        技术架构
+    </h2>
+    <a data-clipboard-text="https://wike-chi.github.io/posts/timao-architecture/#技术架构" class="gdoc-page__anchor clip flex align-center" title="锚定到： 技术架构" aria-label="锚定到： 技术架构" href="#%e6%8a%80%e6%9c%af%e6%9e%b6%e6%9e%84">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>整体采用前后端分离 + 本地桌面的方案：</p>
+<pre tabindex="0"><code>┌─────────────────────────────┐
+│       Electron 38 Shell      │
+│  ┌───────────┐ ┌──────────┐ │
+│  │  React 18 │ │ FastAPI  │ │
+│  │  Renderer │ │ Backend  │ │
+│  └─────┬─────┘ └────┬─────┘ │
+│        │             │       │
+│        └──────┬──────┘       │
+│         WebSocket IPC        │
+└─────────────────────────────┘
+              │
+    ┌─────────┼─────────┐
+    │         │         │
+┌───▼──┐ ┌───▼──┐ ┌───▼──┐
+│弹幕   │ │语音   │ │AI    │
+│抓取   │ │识别   │ │分析  │
+└──────┘ └──────┘ └──────┘
+</code></pre><div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="1-弹幕抓取"
+    >
+        1. 弹幕抓取
+    </h3>
+    <a data-clipboard-text="https://wike-chi.github.io/posts/timao-architecture/#1-弹幕抓取" class="gdoc-page__anchor clip flex align-center" title="锚定到： 1. 弹幕抓取" aria-label="锚定到： 1. 弹幕抓取" href="#1-%e5%bc%b9%e5%b9%95%e6%8a%93%e5%8f%96">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>通过 WebSocket 直接对接抖音直播间弹幕流，<strong>毫秒级响应</strong>。不是传统的HTTP轮询方案，而是建立持久连接，弹幕来了就处理。</p>
+      </section>
+
+      <div class="gdoc-post__readmore">
+        
+          <a
+            class="flex-inline align-center fake-link"
+            title="阅读全文"
+            href="/posts/timao-architecture/"
+          >
+            阅读全文
+            <i class="gdoc-icon">gdoc_arrow_right_alt</i>
+          </a>
+        
+      </div>
+
+      <footer class="gdoc-post__footer">
+        <div class="flex flex-wrap align-center gdoc-post__meta">
+          <span class="flex align-center no-wrap">
+  <svg class="gdoc-icon gdoc_date"><use xlink:href="#gdoc_date"></use></svg>
+  <span class="gdoc-post__tag">
+    <time datetime="2026-04-14T00:00:00Z">
+      
+      Apr 14, 2026
+    </time>
+  </span>
+</span>
+
+<span class="flex align-center no-wrap">
+  <svg class="gdoc-icon gdoc_timer"><use xlink:href="#gdoc_timer"></use></svg>
+  <span class="gdoc-post__tag">1 分钟阅读时间</span>
+</span>
+
+
+
+  
+    
+    
+      
+        <span class="flex align-center no-wrap">
+          <svg class="gdoc-icon gdoc_bookmark"><use xlink:href="#gdoc_bookmark"></use></svg>
+          
+  <span class="gdoc-post__tag gdoc-button gdoc-button--regular">
+    <a
+      class="gdoc-button__link"
+      href="/tags/ai/"
+      title="所有带有“AI”标签的帖子。"
+    >
+      AI
+    </a>
+  </span>
+
+        </span>
+      
+    
+    
+  
+    
+    
+      
+        <span class="flex align-center">
+          
+  <span class="gdoc-post__tag gdoc-button gdoc-button--regular">
+    <a
+      class="gdoc-button__link"
+      href="/tags/electron/"
+      title="所有带有“Electron”标签的帖子。"
+    >
+      Electron
+    </a>
+  </span>
+
+        </span>
+      
+    
+    
+  
+    
+    
+      
+        <span class="flex align-center">
+          
+  <span class="gdoc-post__tag gdoc-button gdoc-button--regular">
+    <a
+      class="gdoc-button__link"
+      href="/tags/langchain/"
+      title="所有带有“LangChain”标签的帖子。"
+    >
+      LangChain
+    </a>
+  </span>
+
+        </span>
+      
+    
+    
+  
+    
+    
+      
+        <span class="flex align-center">
+          
+  <span class="gdoc-post__tag gdoc-button gdoc-button--regular">
+    <a
+      class="gdoc-button__link"
+      href="/tags/python/"
+      title="所有带有“Python”标签的帖子。"
+    >
+      Python
+    </a>
+  </span>
+
+        </span>
+      
+    
+    
+  
+    
+    
+    
+  
+
+
+
+
+        </div>
+      </footer>
+    </article>
+  
+  </div>
+  
+
+
+<nav class="gdoc-paging flex flex-even align-center" role="navigation">
+  <div class="gdoc-paging__item gdoc-paging__item--prev">
+    
+  </div>
+  <div class="gdoc-paging__state">1/1</div>
+  <div class="gdoc-paging__item gdoc-paging__item--next">
+    
+  </div>
+</nav>
+
+
+
+
+          
+          
+          <div class="gdoc-page__footer flex flex-wrap justify-between">
+            
+              
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+
+
+
+<span class="gdoc-page__nav">
+  
+</span>
+<span class="gdoc-page__nav">
+  
+</span>
+
+            
+          </div>
+          
+        </div>
+      </main>
+
+      <footer class="gdoc-footer">
+  <nav class="container flex">
+    <div>
+      <section class="flex flex-wrap align-center">
+        <span class="gdoc-footer__item gdoc-footer__item--row">
+          基于 <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> <svg class="gdoc-icon gdoc_heart"><use xlink:href="#gdoc_heart"></use></svg> 制作
+
+        </span>
+        
+        
+      </section>
+      
+    </div>
+    
+      <div class="flex flex-25 justify-end">
+        <span class="gdoc-footer__item text-right">
+          <a class="gdoc-footer__link fake-link" href="#" aria-label="回到顶部">
+            <svg class="gdoc-icon gdoc_keyboard_arrow_up">
+              <use xlink:href="#gdoc_keyboard_arrow_up"></use>
+            </svg>
+            <span class="hidden-mobile">回到顶部</span>
+          </a>
+        </span>
+      </div>
+    
+  </nav>
+</footer>
+
+    </div>
+
+    
+  </body>
+</html>
