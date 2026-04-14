@@ -1,6 +1,39 @@
 <!doctype html><html lang=zh dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>技术实践 | Wike's Blog</title><meta name=keywords content><meta name=description content="AI · 直播系统 · 全栈开发"><meta name=author content="Wike"><link rel=canonical href=https://wike-chi.github.io/categories/%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/><link crossorigin=anonymous href=/assets/css/stylesheet.47e51c7d8489b002361bac156ce9a0a8776d08c5462c2cee95801efafdd90d35.css integrity="sha256-R+UcfYSJsAI2G6wVbOmgqHdtCMVGLCzulYAe+v3ZDTU=" rel="preload stylesheet" as=style><link rel=icon href=https://wike-chi.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://wike-chi.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://wike-chi.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://wike-chi.github.io/apple-touch-icon.png><link rel=mask-icon href=https://wike-chi.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://wike-chi.github.io/categories/%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/index.xml title=rss><link rel=alternate hreflang=zh href=https://wike-chi.github.io/categories/%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://wike-chi.github.io/categories/%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/"><meta property="og:site_name" content="Wike's Blog"><meta property="og:title" content="技术实践"><meta property="og:description" content="AI · 直播系统 · 全栈开发"><meta property="og:locale" content="zh_Hans"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="技术实践"><meta name=twitter:description content="AI · 直播系统 · 全栈开发"></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://wike-chi.github.io/ accesskey=h title="Wike's Blog (Alt + H)">Wike's Blog</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
 <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://wike-chi.github.io/posts/ title=文章><span>文章</span></a></li><li><a href=https://wike-chi.github.io/about/ title=关于><span>关于</span></a></li></ul></nav></header><main class=main><header class=page-header><h1>技术实践</h1></header><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>Wike - AI驱动的抖音直播助手Timao技术架构解析</h2></header><div class=entry-content><p>为什么做Timao 抖音直播的痛点很明确：主播在直播过程中需要同时关注弹幕、话术、节奏，但人脑很难同时处理这么多信息。市面上的直播助手大多是简单的弹幕展示工具，缺少智能化的能力。
+<svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://wike-chi.github.io/posts/ title=文章><span>文章</span></a></li><li><a href=https://wike-chi.github.io/about/ title=关于><span>关于</span></a></li></ul></nav></header><main class=main><header class=page-header><h1>技术实践</h1></header><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>Timao重构手记：干掉Redis、引入Agent架构、用sherpa-onnx替换FunASR</h2></header><div class=entry-content><p>第一版Timao能跑。但能跑和能用是两回事。
+Redis、MySQL、用户认证、订阅支付系统——这些东西对于一个本地桌面应用来说，全是负担。
+于是重写。
+第一刀：砍掉Redis 原来用Redis做弹幕缓存、AI分析缓存、会话存储。部署的时候用户得先装Redis。
+对于一个桌面应用，这很荒谬。
+弹幕本身就是流式数据，过了就过了，不需要持久化缓存。会话数据用内存字典够了。AI分析结果直接推到前端，不存中间态。
+RedisManager砍到只剩一个纯内存实现。整个Redis依赖链全部移除。
+部署门槛从"装Python + Node.js + Redis + MySQL"变成了"装Python + Node.js"。
+第二刀：MySQL换成SQLite 同理。一个本地工具，不需要MySQL。
+SQLite开WAL模式，并发读写完全够用。数据就是一个文件，拷贝就能迁移，备份就是复制。
+数据库初始化脚本写好，第一次启动自动建表。用户不需要手动操作任何东西。
+第三刀：移除用户认证和订阅系统 早期设计里有一套完整的用户系统——注册、登录、订阅、支付。因为想做成SaaS。
+后来想清楚了：直播数据不能上云，这个产品就该是本地的。
+砍掉用户认证、砍掉订阅、砍掉支付。前端相关的UI全部清理。应用打开就能用，不需要登录任何东西。
+代码少了，复杂度低了，用户不用关心"我买了什么套餐"。
+加入：Agent架构 砍完了旧的，加新的。
+原来的AI分析是单体函数调用。弹幕来了，调一次AI，出结果。没有上下文，没有多步推理，没有反馈。
+重构后引入Agent体系：
+BaseAgent — 所有Agent的基类，Pydantic AI兼容。统一输入输出格式，自动计时，自动错误处理。
+DanmakuAgent — 专门处理弹幕。过滤噪声、识别关键互动、判断哪些弹幕值得主播关注。
+VoiceAgent — 语音转写的Agent层。支持多ASR后端切换（SenseVoice、sherpa-onnx、讯飞），运行时可以切，不用重启。
+AnalyzerAgent — 高速分析，支持MiniMax做快速判断。不需要深度推理的场景用轻量模型，省时间。
+DecisionAgent — 决策Agent，接GLM-5的思考模式。需要深度分析的场景（比如直播节奏判断、话术推荐）用大模型。
+ReflectionAgent — 反思Agent，评估其他Agent的输出质量。分析结果先过一遍反思，不靠谱的就重新来。
+所有Agent通过 workflow_v2 编排。不是串行调用，是按需调度。
+加入：AI Gateway 2.0 原来调AI就是直接用LangChain的链式调用。一个模型打天下。
+问题很明显：不同任务需要不同模型。
+弹幕分析要快，用MiniMax。话术生成要好，用GLM-5。简单判断用轻量模型省钱。
+AI Gateway 2.0做的事情：
+智能路由：根据任务类型自动选模型 思考模式：GLM-5的深度推理开关，复杂任务开启，简单任务关闭 流式输出：chat_completion走流式，前端实时显示AI生成过程 多服务商：智谱GLM、MiniMax、讯飞、豆包、DeepSeek，配置里加一行就能用 加入：sherpa-onnx替换FunASR SenseVoice模型之前用FunASR加载。FunASR依赖PyTorch，光PyTorch就几个G。
+sherpa-onnx是纯ONNX推理，不需要PyTorch。模型加载快，内存占用低，推理速度不差。
+迁移之后安装依赖从好几个G砍到几百MB。对于桌面应用的分发来说，这是质的区别。
+语音转写层做了抽象——transcriber接口统一，底层是FunASR还是sherpa-onnx，上层代码不用关心。
+...</p></div><footer class=entry-footer><span title='2026-04-14 00:00:00 +0000 UTC'>2026年4月14日</span>&nbsp;·&nbsp;<span>Wike</span></footer><a class=entry-link aria-label="post link to Timao重构手记：干掉Redis、引入Agent架构、用sherpa-onnx替换FunASR" href=https://wike-chi.github.io/posts/timao-refactor-agent-architecture/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>Wike - AI驱动的抖音直播助手Timao技术架构解析</h2></header><div class=entry-content><p>为什么做Timao 抖音直播的痛点很明确：主播在直播过程中需要同时关注弹幕、话术、节奏，但人脑很难同时处理这么多信息。市面上的直播助手大多是简单的弹幕展示工具，缺少智能化的能力。
 Timao 的目标是：让AI实时辅助直播决策。
 技术架构 整体采用前后端分离 + 本地桌面的方案：
 ┌─────────────────────────────┐ │ Electron 38 Shell │ │ ┌───────────┐ ┌──────────┐ │ │ │ React 18 │ │ FastAPI │ │ │ │ Renderer │ │ Backend │ │ │ └─────┬─────┘ └────┬─────┘ │ │ │ │ │ │ └──────┬──────┘ │ │ WebSocket IPC │ └─────────────────────────────┘ │ ┌─────────┼─────────┐ │ │ │ ┌───▼──┐ ┌───▼──┐ ┌───▼──┐ │弹幕 │ │语音 │ │AI │ │抓取 │ │识别 │ │分析 │ └──────┘ └──────┘ └──────┘ 1. 弹幕抓取 通过 WebSocket 直接对接抖音直播间弹幕流，毫秒级响应。不是传统的HTTP轮询方案，而是建立持久连接，弹幕来了就处理。
