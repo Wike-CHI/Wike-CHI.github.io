@@ -4,7 +4,60 @@
 Timao 的目标是：让AI实时辅助直播决策。
 技术架构 整体采用前后端分离 + 本地桌面的方案：
 ┌─────────────────────────────┐ │ Electron 38 Shell │ │ ┌───────────┐ ┌──────────┐ │ │ │ React 18 │ │ FastAPI │ │ │ │ Renderer │ │ Backend │ │ │ └─────┬─────┘ └────┬─────┘ │ │ │ │ │ │ └──────┬──────┘ │ │ WebSocket IPC │ └─────────────────────────────┘ │ ┌─────────┼─────────┐ │ │ │ ┌───▼──┐ ┌───▼──┐ ┌───▼──┐ │弹幕 │ │语音 │ │AI │ │抓取 │ │识别 │ │分析 │ └──────┘ └──────┘ └──────┘ 1. 弹幕抓取 通过 WebSocket 直接对接抖音直播间弹幕流，毫秒级响应。不是传统的HTTP轮询方案，而是建立持久连接，弹幕来了就处理。
-...</p></div><footer class=entry-footer><span title='2026-04-14 00:00:00 +0000 UTC'>2026年4月14日</span>&nbsp;·&nbsp;<span>Wike</span></footer><a class=entry-link aria-label="post link to Wike - AI驱动的抖音直播助手Timao技术架构解析" href=https://wike-chi.github.io/posts/timao-architecture/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://wike-chi.github.io/>Wike's Blog</a></span> ·
+...</p></div><footer class=entry-footer><span title='2026-04-14 00:00:00 +0000 UTC'>2026年4月14日</span>&nbsp;·&nbsp;<span>Wike</span></footer><a class=entry-link aria-label="post link to Wike - AI驱动的抖音直播助手Timao技术架构解析" href=https://wike-chi.github.io/posts/timao-architecture/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>我用Electron和FastAPI搭了一个直播助手，主播说比SaaS好用</h2></header><div class=entry-content><p>有个做MCN的朋友跟我说，他们用市面上的直播辅助工具，弹幕延迟3秒起步，AI分析是套壳ChatGPT，数据还要传到别人的服务器上。
+主播不放心。谁愿意把自己直播间的实时数据交给第三方？
+我说我给你做一个。
+选型：为什么是Electron + FastAPI 一开始纠结过纯Web方案。部署简单，一个链接就能用。
+但问题很硬：本地语音识别怎么办？模型推理怎么跑？浏览器搞不定这些。
+最后拆成两层——
+Electron壳子负责UI。React画仪表盘，弹幕流实时滚动，AI话术建议弹出来，体验和原生应用差不多。
+FastAPI藏在后面做引擎。Python生态里ASR模型、LangChain、Qwen全是现成的，不用折腾。
+两个进程通过本地WebSocket通信。各干各的，互不拖后腿。
+弹幕这块，轮询是不可能的 抖音直播间的弹幕走的是WebSocket长连接。
+有些人用HTTP轮询去抓，3秒一次。3秒在直播里是什么概念？一条弹幕发出来，主播回的时候观众已经刷过去二十条了。
+我直接建持久连接，心跳保活，断线自动重连。弹幕来了就推到前端，延迟压到毫秒级。
+礼物、评论、进入直播间，分别解析，分别处理。主播的仪表盘上能实时看到哪条弹幕值得回。
+SenseVoice vs Whisper 语音转写试过两个。
+Whisper很强，但它是"录完再转"的模式。直播场景不行，主播说完一句话，等两秒才出结果，节奏全乱了。
+SenseVoice支持流式识别。音频切成小段，边说边转。延迟低，中文准确率也高。
+实现上加了VAD（语音活动检测）。不是所有声音都送进模型，有人说话才处理，省算力也减少误识别。
+AI话术：不是让AI替主播说话 这里踩过大坑。
+第一版做得太激进了，AI直接生成完整话术让主播念。效果很尴尬——主播念得生硬，观众听得别扭。
+后来改了思路。AI不替你说，AI告诉你"现在该说什么类型的词"。
+比如弹幕里突然有人问"多少钱"，AI会在屏幕上亮一个提示：“有人在问价格，准备报价”。
+再比如连续五分钟没有互动，AI提醒：“节奏偏冷，可以抽奖或者抛话题”。
+主播的判断力还在，AI只是多了一双眼睛。
+复盘报告：直播结束不代表工作结束 每次直播结束，系统自动生成一份复盘。
+话术时间线——几点几分说了什么关键信息。 弹幕热度图——哪个时段互动最密集。 观众留存拐点——哪些话术导致观众离开或停留。
+这些数据主播自己看一遍就知道下次该怎么调整。
+关键是全在本地。没有上传，没有云端存储，不用担心数据泄露。
+技术栈最后长这样 前端：Electron 38 + React 18 + TypeScript 后端：Python 3.13 + FastAPI AI：LangChain + Qwen + SenseVoice 通信：WebSocket 打完包大概200MB出头。对于一个带本地AI推理能力的桌面应用来说，还行。
+项目开源在 GitHub，有兴趣可以看看。
+有问题随时提issue。</p></div><footer class=entry-footer><span title='2026-04-14 00:00:00 +0000 UTC'>2026年4月14日</span>&nbsp;·&nbsp;<span>Wike</span></footer><a class=entry-link aria-label="post link to 我用Electron和FastAPI搭了一个直播助手，主播说比SaaS好用" href=https://wike-chi.github.io/posts/live-assistant-electron-fastapi/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>用Tauri替代Electron做图像工具，打包体积从200MB砍到8MB</h2></header><div class=entry-content><p>做AI抠图工具的时候，先出的Electron版本。能跑，但总觉得自己在用大炮打蚊子。
+一个抠图工具，打包出来200MB。里面塞着一个完整的Chromium。
+用户下载的时候会想：我就是要个抠图啊。
+换Tauri Tauri 2.0出来之后，用Rust替掉了Chromium，前端还是用的Web技术。
+同一个功能——AI智能抠图、白底图生成、批量处理——重写了一遍。
+打包体积：8MB。
+没有写错。两百兆变八兆。
+用户不需要装任何运行时。双击打开直接用。
+前端几乎不用改 React写的界面，从Electron搬到Tauri，改动很小。
+Tauri的API设计和Electron有点不一样，但思路差不多。前端通过 @tauri-apps/api 调用后端能力。
+唯一要适应的是Rust那层。如果你的后端逻辑原来就在Python里（比如我这边的AI推理），可以通过Tauri的sidecar或者command调外部进程。
+我的做法是Tauri壳子负责UI，FastAPI还是跑在本地做推理。和Electron那套架构类似，只是壳子轻了很多。
+性能差距在实际使用中感受明显 Electron版本的冷启动要3-4秒。Chromium要加载，渲染进程要初始化。
+Tauri版本冷启动不到1秒。
+批量处理100张图片的时候，Tauri版本的内存占用稳定在150MB左右。Electron版本起步就300MB，处理到后面能飙到500MB。
+原因很简单：Electron带了整个浏览器引擎，Tauri用的是系统自带的WebView。
+但Tauri也有坑 兼容性。 Windows上依赖WebView2（Edge内核），老一点的Windows 10可能需要手动装。Electron自带Chromium，不依赖系统环境。
+生态差距。 Electron的npm生态非常成熟，遇到问题基本都能搜到。Tauri还在成长中，有些edge case只能翻文档或者看源码。
+调试体验。 Electron的DevTools就是Chrome DevTools，非常顺手。Tauri在Windows上也能开DevTools，但偶尔有些奇怪的渲染差异需要系统WebView背锅。
+我的结论 如果你的应用是——
+重前端、轻后端（管理工具、笔记应用、小工具） 需要小体积、快启动 用户群技术素养还行（能接受装WebView2） → Tauri，毫不犹豫。
+如果你的应用是——
+需要兼容各种老系统 大量依赖Electron特有生态（比如某些npm包直接调Node API） 团队全是JS/TS，不想碰Rust → Electron还是更稳。
+我的抠图工具最后选了Tauri。8MB的安装包，跨平台，用户反馈很好。
+项目在 GitHub，可以看看实现细节。</p></div><footer class=entry-footer><span title='2026-04-14 00:00:00 +0000 UTC'>2026年4月14日</span>&nbsp;·&nbsp;<span>Wike</span></footer><a class=entry-link aria-label="post link to 用Tauri替代Electron做图像工具，打包体积从200MB砍到8MB" href=https://wike-chi.github.io/posts/tauri-vs-electron-image-tool/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://wike-chi.github.io/>Wike's Blog</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
